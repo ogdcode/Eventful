@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6356C7181DA01EC300380633 /* eventful_logo_launch.png in Resources */ = {isa = PBXBuildFile; fileRef = 6356C7171DA01EC300380633 /* eventful_logo_launch.png */; };
 		639ABF111D9C3CB300BFE7F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639ABF101D9C3CB300BFE7F3 /* AppDelegate.swift */; };
 		639ABF131D9C3CB300BFE7F3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639ABF121D9C3CB300BFE7F3 /* ViewController.swift */; };
 		639ABF161D9C3CB300BFE7F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 639ABF141D9C3CB300BFE7F3 /* Main.storyboard */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6356C7171DA01EC300380633 /* eventful_logo_launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eventful_logo_launch.png; sourceTree = "<group>"; };
 		639ABF0D1D9C3CB300BFE7F3 /* EventFul.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EventFul.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		639ABF101D9C3CB300BFE7F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		639ABF121D9C3CB300BFE7F3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 				639ABF141D9C3CB300BFE7F3 /* Main.storyboard */,
 				639ABF1A1D9C3CB300BFE7F3 /* Assets.xcassets */,
 				639ABF1C1D9C3CB300BFE7F3 /* LaunchScreen.storyboard */,
+				6356C7171DA01EC300380633 /* eventful_logo_launch.png */,
 				639ABF1F1D9C3CB300BFE7F3 /* Info.plist */,
 				639ABF171D9C3CB300BFE7F3 /* EventFul.xcdatamodeld */,
 			);
@@ -129,6 +132,7 @@
 			files = (
 				639ABF1E1D9C3CB300BFE7F3 /* LaunchScreen.storyboard in Resources */,
 				639ABF1B1D9C3CB300BFE7F3 /* Assets.xcassets in Resources */,
+				6356C7181DA01EC300380633 /* eventful_logo_launch.png in Resources */,
 				639ABF161D9C3CB300BFE7F3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
