@@ -8,21 +8,27 @@
 
 /* Begin PBXBuildFile section */
 		6356C7181DA01EC300380633 /* eventful_logo_launch.png in Resources */ = {isa = PBXBuildFile; fileRef = 6356C7171DA01EC300380633 /* eventful_logo_launch.png */; };
+		638A79281DA1037800E680FC /* EventFul.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 638A79261DA1037800E680FC /* EventFul.xcdatamodeld */; };
+		638A792B1DA10ACB00E680FC /* Event+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638A79291DA10ACB00E680FC /* Event+CoreDataClass.swift */; };
+		638A792C1DA10ACB00E680FC /* Event+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638A792A1DA10ACB00E680FC /* Event+CoreDataProperties.swift */; };
+		638A792E1DA150EC00E680FC /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638A792D1DA150EC00E680FC /* DataManager.swift */; };
 		639ABF111D9C3CB300BFE7F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639ABF101D9C3CB300BFE7F3 /* AppDelegate.swift */; };
 		639ABF131D9C3CB300BFE7F3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639ABF121D9C3CB300BFE7F3 /* ViewController.swift */; };
 		639ABF161D9C3CB300BFE7F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 639ABF141D9C3CB300BFE7F3 /* Main.storyboard */; };
-		639ABF191D9C3CB300BFE7F3 /* EventFul.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 639ABF171D9C3CB300BFE7F3 /* EventFul.xcdatamodeld */; };
 		639ABF1B1D9C3CB300BFE7F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 639ABF1A1D9C3CB300BFE7F3 /* Assets.xcassets */; };
 		639ABF1E1D9C3CB300BFE7F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 639ABF1C1D9C3CB300BFE7F3 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		6356C7171DA01EC300380633 /* eventful_logo_launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eventful_logo_launch.png; sourceTree = "<group>"; };
+		638A79271DA1037800E680FC /* EventFul.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EventFul.xcdatamodel; sourceTree = "<group>"; };
+		638A79291DA10ACB00E680FC /* Event+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataClass.swift"; sourceTree = "<group>"; };
+		638A792A1DA10ACB00E680FC /* Event+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		638A792D1DA150EC00E680FC /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		639ABF0D1D9C3CB300BFE7F3 /* EventFul.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EventFul.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		639ABF101D9C3CB300BFE7F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		639ABF121D9C3CB300BFE7F3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		639ABF151D9C3CB300BFE7F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		639ABF181D9C3CB300BFE7F3 /* EventFul.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EventFul.xcdatamodel; sourceTree = "<group>"; };
 		639ABF1A1D9C3CB300BFE7F3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		639ABF1D1D9C3CB300BFE7F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		639ABF1F1D9C3CB300BFE7F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -42,6 +48,8 @@
 		639ABF041D9C3CB300BFE7F3 = {
 			isa = PBXGroup;
 			children = (
+				638A79291DA10ACB00E680FC /* Event+CoreDataClass.swift */,
+				638A792A1DA10ACB00E680FC /* Event+CoreDataProperties.swift */,
 				639ABF0F1D9C3CB300BFE7F3 /* EventFul */,
 				639ABF0E1D9C3CB300BFE7F3 /* Products */,
 			);
@@ -59,13 +67,14 @@
 			isa = PBXGroup;
 			children = (
 				639ABF101D9C3CB300BFE7F3 /* AppDelegate.swift */,
+				638A792D1DA150EC00E680FC /* DataManager.swift */,
 				639ABF121D9C3CB300BFE7F3 /* ViewController.swift */,
 				639ABF141D9C3CB300BFE7F3 /* Main.storyboard */,
 				639ABF1A1D9C3CB300BFE7F3 /* Assets.xcassets */,
 				639ABF1C1D9C3CB300BFE7F3 /* LaunchScreen.storyboard */,
 				6356C7171DA01EC300380633 /* eventful_logo_launch.png */,
+				638A79261DA1037800E680FC /* EventFul.xcdatamodeld */,
 				639ABF1F1D9C3CB300BFE7F3 /* Info.plist */,
-				639ABF171D9C3CB300BFE7F3 /* EventFul.xcdatamodeld */,
 			);
 			path = EventFul;
 			sourceTree = "<group>";
@@ -144,8 +153,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				639ABF191D9C3CB300BFE7F3 /* EventFul.xcdatamodeld in Sources */,
+				638A792C1DA10ACB00E680FC /* Event+CoreDataProperties.swift in Sources */,
+				638A792E1DA150EC00E680FC /* DataManager.swift in Sources */,
+				638A79281DA1037800E680FC /* EventFul.xcdatamodeld in Sources */,
 				639ABF131D9C3CB300BFE7F3 /* ViewController.swift in Sources */,
+				638A792B1DA10ACB00E680FC /* Event+CoreDataClass.swift in Sources */,
 				639ABF111D9C3CB300BFE7F3 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -323,12 +335,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		639ABF171D9C3CB300BFE7F3 /* EventFul.xcdatamodeld */ = {
+		638A79261DA1037800E680FC /* EventFul.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				639ABF181D9C3CB300BFE7F3 /* EventFul.xcdatamodel */,
+				638A79271DA1037800E680FC /* EventFul.xcdatamodel */,
 			);
-			currentVersion = 639ABF181D9C3CB300BFE7F3 /* EventFul.xcdatamodel */;
+			currentVersion = 638A79271DA1037800E680FC /* EventFul.xcdatamodel */;
 			path = EventFul.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
