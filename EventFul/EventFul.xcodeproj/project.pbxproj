@@ -12,6 +12,9 @@
 		638A792B1DA10ACB00E680FC /* Event+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638A79291DA10ACB00E680FC /* Event+CoreDataClass.swift */; };
 		638A792C1DA10ACB00E680FC /* Event+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638A792A1DA10ACB00E680FC /* Event+CoreDataProperties.swift */; };
 		638A792E1DA150EC00E680FC /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638A792D1DA150EC00E680FC /* DataManager.swift */; };
+		638A79301DA2829500E680FC /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638A792F1DA2829500E680FC /* EventViewController.swift */; };
+		638A79321DA29FAC00E680FC /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638A79311DA29FAC00E680FC /* ListViewController.swift */; };
+		638A79341DA2A86100E680FC /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638A79331DA2A86100E680FC /* EventTableViewCell.swift */; };
 		639ABF111D9C3CB300BFE7F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639ABF101D9C3CB300BFE7F3 /* AppDelegate.swift */; };
 		639ABF131D9C3CB300BFE7F3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639ABF121D9C3CB300BFE7F3 /* ViewController.swift */; };
 		639ABF161D9C3CB300BFE7F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 639ABF141D9C3CB300BFE7F3 /* Main.storyboard */; };
@@ -25,6 +28,9 @@
 		638A79291DA10ACB00E680FC /* Event+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataClass.swift"; sourceTree = "<group>"; };
 		638A792A1DA10ACB00E680FC /* Event+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		638A792D1DA150EC00E680FC /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		638A792F1DA2829500E680FC /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
+		638A79311DA29FAC00E680FC /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		638A79331DA2A86100E680FC /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		639ABF0D1D9C3CB300BFE7F3 /* EventFul.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EventFul.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		639ABF101D9C3CB300BFE7F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		639ABF121D9C3CB300BFE7F3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -70,6 +76,9 @@
 				638A792D1DA150EC00E680FC /* DataManager.swift */,
 				639ABF121D9C3CB300BFE7F3 /* ViewController.swift */,
 				639ABF141D9C3CB300BFE7F3 /* Main.storyboard */,
+				638A79331DA2A86100E680FC /* EventTableViewCell.swift */,
+				638A79311DA29FAC00E680FC /* ListViewController.swift */,
+				638A792F1DA2829500E680FC /* EventViewController.swift */,
 				639ABF1A1D9C3CB300BFE7F3 /* Assets.xcassets */,
 				639ABF1C1D9C3CB300BFE7F3 /* LaunchScreen.storyboard */,
 				6356C7171DA01EC300380633 /* eventful_logo_launch.png */,
@@ -153,11 +162,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				638A79341DA2A86100E680FC /* EventTableViewCell.swift in Sources */,
 				638A792C1DA10ACB00E680FC /* Event+CoreDataProperties.swift in Sources */,
 				638A792E1DA150EC00E680FC /* DataManager.swift in Sources */,
+				638A79301DA2829500E680FC /* EventViewController.swift in Sources */,
 				638A79281DA1037800E680FC /* EventFul.xcdatamodeld in Sources */,
 				639ABF131D9C3CB300BFE7F3 /* ViewController.swift in Sources */,
 				638A792B1DA10ACB00E680FC /* Event+CoreDataClass.swift in Sources */,
+				638A79321DA29FAC00E680FC /* ListViewController.swift in Sources */,
 				639ABF111D9C3CB300BFE7F3 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

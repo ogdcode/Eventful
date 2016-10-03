@@ -15,7 +15,7 @@ class DataManager: NSObject {
     
     override init() {
         
-        guard let modelURL = Bundle.main.url(forResource: "Eventful", withExtension: "momd") else {
+        guard let modelURL = Bundle.main.url(forResource: "EventFul", withExtension: "momd") else {
             fatalError("Erreur de chargement du modèle de donnée")
         }
         
@@ -42,5 +42,13 @@ class DataManager: NSObject {
         
         
     }
+    
+    /*func createNewEvent(titre:String, eventDetail:String, context:NSManagedObjectContext){
+        let event = NSEntityDescription.insertNewObject(forEntityName: "Event", into: context) as! Event
+        
+        event.titre = titre
+        event.eventDetail = eventDetail
+        
+    }*/
 
 }
