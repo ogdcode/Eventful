@@ -7,34 +7,66 @@
 //
 
 import UIKit
+import CoreData
 
 class ListViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
 
-   let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).dataManager
+    var managedObjectContext:NSManagedObjectContext?
+    var eventArray:[Event] = []
     
     @IBOutlet weak var eventTableView: UITableView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        eventTableView.dataSource = self
+        
+        managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).dataManager
+        print("dataManager object : \(managedObjectContext)")
+        loadEventData(context: managedObjectContext)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func loadEventData(context:NSManagedObjectContext?) {
+       
+        let request = NSFetchRequest<Event>(entityName: "Event")
+        print("context:\(context)")
+        let events = try? (context?.fetch(request))!
+        
+        var i:Int = 0
+        for e in events! {
+            i += 1
+            eventArray.append(e)
+            print("fetch event:\(e.titre)")
+            //print("event in eventArray:\(eventArray[i])")
+        }
+    }
 
     func numberOfSections(in tableView: UITableView) -> Int {
+        
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        <#code#>
+        
+        return eventArray.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
+        
+        let cellIdentifier = "EventCell"
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! EventTableViewCell
+        let event = eventArray[indexPath.row]
+        
+        cell.titreTableViewCell.text = event.titre
+        
+        return cell
     }
     /*
     // MARK: - Navigation
