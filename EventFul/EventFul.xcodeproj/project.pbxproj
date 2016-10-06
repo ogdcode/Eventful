@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6356C7181DA01EC300380633 /* eventful_logo_launch.png in Resources */ = {isa = PBXBuildFile; fileRef = 6356C7171DA01EC300380633 /* eventful_logo_launch.png */; };
 		638A79281DA1037800E680FC /* EventFul.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 638A79261DA1037800E680FC /* EventFul.xcdatamodeld */; };
 		638A792B1DA10ACB00E680FC /* Event+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638A79291DA10ACB00E680FC /* Event+CoreDataClass.swift */; };
 		638A792C1DA10ACB00E680FC /* Event+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638A792A1DA10ACB00E680FC /* Event+CoreDataProperties.swift */; };
@@ -15,15 +14,15 @@
 		638A79301DA2829500E680FC /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638A792F1DA2829500E680FC /* EventViewController.swift */; };
 		638A79321DA29FAC00E680FC /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638A79311DA29FAC00E680FC /* ListViewController.swift */; };
 		638A79341DA2A86100E680FC /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638A79331DA2A86100E680FC /* EventTableViewCell.swift */; };
+		638A79361DA5660E00E680FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 638A79351DA5660E00E680FC /* Assets.xcassets */; };
+		638A79381DA6889500E680FC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638A79371DA6889500E680FC /* DetailViewController.swift */; };
 		639ABF111D9C3CB300BFE7F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639ABF101D9C3CB300BFE7F3 /* AppDelegate.swift */; };
 		639ABF131D9C3CB300BFE7F3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639ABF121D9C3CB300BFE7F3 /* ViewController.swift */; };
 		639ABF161D9C3CB300BFE7F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 639ABF141D9C3CB300BFE7F3 /* Main.storyboard */; };
-		639ABF1B1D9C3CB300BFE7F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 639ABF1A1D9C3CB300BFE7F3 /* Assets.xcassets */; };
 		639ABF1E1D9C3CB300BFE7F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 639ABF1C1D9C3CB300BFE7F3 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6356C7171DA01EC300380633 /* eventful_logo_launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eventful_logo_launch.png; sourceTree = "<group>"; };
 		638A79271DA1037800E680FC /* EventFul.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EventFul.xcdatamodel; sourceTree = "<group>"; };
 		638A79291DA10ACB00E680FC /* Event+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataClass.swift"; sourceTree = "<group>"; };
 		638A792A1DA10ACB00E680FC /* Event+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -31,11 +30,12 @@
 		638A792F1DA2829500E680FC /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		638A79311DA29FAC00E680FC /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		638A79331DA2A86100E680FC /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
+		638A79351DA5660E00E680FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		638A79371DA6889500E680FC /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		639ABF0D1D9C3CB300BFE7F3 /* EventFul.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EventFul.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		639ABF101D9C3CB300BFE7F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		639ABF121D9C3CB300BFE7F3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		639ABF151D9C3CB300BFE7F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		639ABF1A1D9C3CB300BFE7F3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		639ABF1D1D9C3CB300BFE7F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		639ABF1F1D9C3CB300BFE7F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -75,13 +75,13 @@
 				639ABF101D9C3CB300BFE7F3 /* AppDelegate.swift */,
 				638A792D1DA150EC00E680FC /* DataManager.swift */,
 				639ABF121D9C3CB300BFE7F3 /* ViewController.swift */,
+				638A79351DA5660E00E680FC /* Assets.xcassets */,
 				639ABF141D9C3CB300BFE7F3 /* Main.storyboard */,
+				638A79371DA6889500E680FC /* DetailViewController.swift */,
 				638A79331DA2A86100E680FC /* EventTableViewCell.swift */,
 				638A79311DA29FAC00E680FC /* ListViewController.swift */,
 				638A792F1DA2829500E680FC /* EventViewController.swift */,
-				639ABF1A1D9C3CB300BFE7F3 /* Assets.xcassets */,
 				639ABF1C1D9C3CB300BFE7F3 /* LaunchScreen.storyboard */,
-				6356C7171DA01EC300380633 /* eventful_logo_launch.png */,
 				638A79261DA1037800E680FC /* EventFul.xcdatamodeld */,
 				639ABF1F1D9C3CB300BFE7F3 /* Info.plist */,
 			);
@@ -149,8 +149,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				639ABF1E1D9C3CB300BFE7F3 /* LaunchScreen.storyboard in Resources */,
-				639ABF1B1D9C3CB300BFE7F3 /* Assets.xcassets in Resources */,
-				6356C7181DA01EC300380633 /* eventful_logo_launch.png in Resources */,
+				638A79361DA5660E00E680FC /* Assets.xcassets in Resources */,
 				639ABF161D9C3CB300BFE7F3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -169,6 +168,7 @@
 				638A79281DA1037800E680FC /* EventFul.xcdatamodeld in Sources */,
 				639ABF131D9C3CB300BFE7F3 /* ViewController.swift in Sources */,
 				638A792B1DA10ACB00E680FC /* Event+CoreDataClass.swift in Sources */,
+				638A79381DA6889500E680FC /* DetailViewController.swift in Sources */,
 				638A79321DA29FAC00E680FC /* ListViewController.swift in Sources */,
 				639ABF111D9C3CB300BFE7F3 /* AppDelegate.swift in Sources */,
 			);

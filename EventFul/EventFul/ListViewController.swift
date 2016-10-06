@@ -13,6 +13,7 @@ class ListViewController: UIViewController,UITableViewDataSource,UITableViewDele
 
     var managedObjectContext:NSManagedObjectContext?
     var eventArray:[Event] = []
+    //var refreshControl = UIRefreshControl ()
     
     @IBOutlet weak var eventTableView: UITableView!
     
@@ -20,12 +21,31 @@ class ListViewController: UIViewController,UITableViewDataSource,UITableViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        eventTableView.dataSource = self
         
-        managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).dataManager
+        // Do any additional setup after loading the view.
+        self.eventTableView.dataSource = self
+        self.eventTableView.delegate = self
+        
+        /*self.refreshControl.attributedTitle = NSAttributedString(string: "Rechargement")
+        self.refreshControl.addTarget(self, action: Selector(("refresh")), for: UIControlEvents.valueChanged)
+        self.eventTableView.addSubview(refreshControl)
+        */
+        
+        self.managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).dataManager
         print("dataManager object : \(managedObjectContext)")
-        loadEventData(context: managedObjectContext)
+        self.loadEventData(context: managedObjectContext)
+        
+        self.navigationController?.navigationBar.backIndicatorImage = UIImage(named: "back_button")
+        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(named: "back_button")
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.plain, target: nil, action: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        eventArray.removeAll()
+        self.loadEventData(context: managedObjectContext)
+        self.eventTableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,8 +53,29 @@ class ListViewController: UIViewController,UITableViewDataSource,UITableViewDele
         // Dispose of any resources that can be recreated.
     }
     
-    func loadEventData(context:NSManagedObjectContext?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
        
+        if let cell = sender as? UITableViewCell {
+            let row = eventTableView.indexPath(for: cell)!.row
+            
+            if segue.identifier == "detailEventSegue" {
+                
+                let detailViewController = segue.destination as! DetailViewController
+                let event = eventArray[row]
+                
+                print("Detail titre\(event.titre)")
+                print("Detail text\(event.eventDetail)")
+                
+                detailViewController.eventDetail = event
+            }
+        }
+        
+
+    }
+
+    
+    func loadEventData(context:NSManagedObjectContext?) {
+        
         let request = NSFetchRequest<Event>(entityName: "Event")
         print("context:\(context)")
         let events = try? (context?.fetch(request))!
@@ -46,7 +87,14 @@ class ListViewController: UIViewController,UITableViewDataSource,UITableViewDele
             print("fetch event:\(e.titre)")
             //print("event in eventArray:\(eventArray[i])")
         }
+        
     }
+    
+    func refresh(sender:AnyObject) {
+        
+        self.loadEventData(context: managedObjectContext)
+    }
+    
 
     func numberOfSections(in tableView: UITableView) -> Int {
         
@@ -68,6 +116,14 @@ class ListViewController: UIViewController,UITableViewDataSource,UITableViewDele
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let cell = eventTableView.cellForRow(at: indexPath)
+        eventTableView.deselectRow(at: indexPath, animated: true)
+        performSegue(withIdentifier: "detailEventSegue", sender: cell)
+    }
+    
     /*
     // MARK: - Navigation
 

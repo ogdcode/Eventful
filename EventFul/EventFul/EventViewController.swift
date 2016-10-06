@@ -9,13 +9,13 @@
 import UIKit
 import CoreData
 
-class EventViewController: UIViewController {
+class EventViewController: UIViewController,UITextFieldDelegate, UITextViewDelegate {
 
     let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).dataManager
     
     @IBOutlet weak var titreLabel: UITextField!
     @IBOutlet weak var detailTextView: UITextView!
-    @IBOutlet var validerButton: UIView!
+    @IBOutlet weak var validerButton: UIButton!
     
     
     override func viewDidLoad() {
@@ -24,8 +24,10 @@ class EventViewController: UIViewController {
         // Do any additional setup after loading the view.
         print("dataManager object : \(managedObjectContext)")
         
+        self.titreLabel.delegate = self
+        self.detailTextView.delegate = self
         
-        
+        self.checkEventValidTitle()
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,7 +35,41 @@ class EventViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func onTouchUpValider(_ sender: UIButton) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        self.validerButton.isEnabled = false
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        self.checkEventValidTitle()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        
+        if text == "\n" {
+            textView.resignFirstResponder()
+            return false
+        }
+        
+        return true
+    }
+    
+    
+    func checkEventValidTitle() {
+        
+        let titreText = self.titreLabel.text ?? ""
+        self.validerButton.isEnabled = !(titreText.isEmpty)
+    }
+    
+    func saveEventData() {
+        
         print("Titre:\(titreLabel.text)")
         print("Detail:\(detailTextView.text)")
         
@@ -42,6 +78,14 @@ class EventViewController: UIViewController {
         event.eventDetail = detailTextView.text
         
         try? managedObjectContext?.save()
+        
+    }
+    
+    @IBAction func onTouchUpValider(_ sender: UIButton) {
+        
+       self.saveEventData()
+        
+       self.navigationController?.popViewController(animated: true)
     }
 
     /*

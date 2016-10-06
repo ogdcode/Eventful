@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="eventful_logo_launch.png" translatesAutoresizingMaskIntoConstraints="NO" id="W3L-Vw-3BD">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="eventful_logo_launch" translatesAutoresizingMaskIntoConstraints="NO" id="W3L-Vw-3BD">
                                 <frame key="frameInset" minX="92" minY="209" width="190" height="248"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -32,6 +32,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="eventful_logo_launch.png" width="491" height="638"/>
+        <image name="eventful_logo_launch" width="491" height="638"/>
     </resources>
 </document>
