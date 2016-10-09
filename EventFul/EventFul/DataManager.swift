@@ -42,6 +42,7 @@ class DataManager: NSObject {
         
         
     }
+
     
     /*func createNewEvent(titre:String, eventDetail:String, context:NSManagedObjectContext){
         let event = NSEntityDescription.insertNewObject(forEntityName: "Event", into: context) as! Event

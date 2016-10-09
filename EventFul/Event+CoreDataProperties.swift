@@ -2,7 +2,7 @@
 //  Event+CoreDataProperties.swift
 //  EventFul
 //
-//  Created by Tracy Sablon on 02/10/2016.
+//  Created by Tracy Sablon on 09/10/2016.
 //  Copyright © 2016 Tracy Sablon. All rights reserved.
 //
 
@@ -16,7 +16,8 @@ extension Event {
         return NSFetchRequest<Event>(entityName: "Event");
     }
 
-    @NSManaged public var titre: String?
     @NSManaged public var eventDetail: String?
+    @NSManaged public var titre: String?
+    @NSManaged public var favoris: Bool
 
 }

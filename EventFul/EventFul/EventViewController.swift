@@ -87,6 +87,8 @@ class EventViewController: UIViewController,UITextFieldDelegate, UITextViewDeleg
         
        self.navigationController?.popViewController(animated: true)
     }
+    
+    
 
     /*
     // MARK: - Navigation
