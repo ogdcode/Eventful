@@ -11,19 +11,13 @@ import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    var window: UIWindow?
-    var dataManager : NSManagedObjectContext?
-
+    
+    var window: UIWindow?                           // The application window.
+    var dataManager : NSManagedObjectContext?       // The object managing the CoreData file.
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        
         dataManager = DataManager().context
-        
-        
         return true
     }
-
 }
 

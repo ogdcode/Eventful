@@ -11,25 +11,21 @@ import UIKit
 class EventTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titreTableViewCell: UILabel!
-    
+
     @IBOutlet weak var modifierButton: UIButton!
     @IBOutlet weak var supprimerButton: UIButton!
     @IBOutlet weak var favorisButton: UIButton!
     
+    // MARK: - UITableViewCell
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         
-        favorisButton.titleLabel?.text = "Favoris"
-        favorisButton.titleLabel?.isHidden = true
-        
+        self.favorisButton.titleLabel?.text = "Favoris"
+        self.favorisButton.titleLabel?.isHidden = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
-
 }

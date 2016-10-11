@@ -11,128 +11,105 @@ import CoreData
 
 class DetailViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
 
-    var managedObjectContext:NSManagedObjectContext?
-    var dataManager:DataManager?
-    var eventDetail:Event!
-    var eventArray:[Event] = []
-    
-    let imageFavorisTrue = UIImage(named: "fav_true_button")
-    let imageFavorisFalse = UIImage(named: "fav_false_button")
-    var isModifier:Bool = false
-    
     @IBOutlet weak var detailTextView: UITextView!
     @IBOutlet weak var titreTextView: UITextField!
     @IBOutlet weak var favorisButton: UIButton!
     @IBOutlet weak var sauvegardButton: UIButton!
+    
+    var managedObjectContext: NSManagedObjectContext?
+    var dataManager: DataManager?
+    
+    let eventEntity: String = "Event"
+    var eventDetail: Event!
+    var eventArray: [Event] = [Event]()
+    
+    let imageFavorisTrue: UIImage = UIImage(named: "fav_true_button")!
+    let imageFavorisFalse: UIImage = UIImage(named: "fav_false_button")!
+    var isModifier: Bool = false
 
-
-    //var detaitText : String?
+    // MARK: - ViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).dataManager
         
-        // Do any additional setup after loading the view.
         self.navigationItem.title = eventDetail.titre
         self.detailTextView.text = self.eventDetail.eventDetail
         
+        // Delegates for managing UITextField and UITextView actions
         self.detailTextView.delegate = self
         self.titreTextView.delegate = self
         
-        let eventFavoris = self.eventDetail.favoris
-        let imageFavoris = eventFavoris ? imageFavorisTrue : imageFavorisFalse
-        self.favorisButton.setImage(imageFavoris, for:.normal)
+        let eventFavoris: Bool = self.eventDetail.favoris
+        let imageFavoris: UIImage = eventFavoris ? self.imageFavorisTrue : self.imageFavorisFalse
+        self.favorisButton.setImage(imageFavoris, for: .normal)
         
-        if !isModifier {
-            
+        if !self.isModifier {
             self.sauvegardButton.isHidden = true
             self.titreTextView.isHidden = true
         }
-
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
+    // MARK: - UITextViewDelegate
     
-    func deleteEventData(context:NSManagedObjectContext?) {
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        return self.isModifier
+    }
+    
+    // MARK: - UITextFieldDelegate
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        return self.isModifier
+    }
+
+    // MARK: - Actions
+
+    func deleteEventData(_ context: NSManagedObjectContext?) {
         
-        print("context:\(context)")
-        let request = NSFetchRequest<Event>(entityName: "Event")
-        let predicateEvent = NSPredicate(format: "self == %@", eventDetail.objectID)
+        let request: NSFetchRequest = NSFetchRequest<Event>(entityName: self.eventEntity)
+        let predicateEvent: NSPredicate = NSPredicate(format: "self == %@", eventDetail.objectID)
         request.predicate = predicateEvent
 
-        let events = try?(context?.fetch(request))!
+        let events: [Event] = try! (context?.fetch(request))!
         
-        for event in events! {
-            
-            print("Delete event:\(event)")
+        for event in events {
             context?.delete(event)
         }
         
-        try? managedObjectContext?.save()
+        try? self.managedObjectContext?.save()
     }
     
-    func updateEventData(context:NSManagedObjectContext?, event:Event) {
+    func updateEventData(_ context: NSManagedObjectContext?, _ event: Event) {
         
-        print("context:\(context)")
-        let request = NSFetchRequest<Event>(entityName: "Event")
-        let predicateEvent = NSPredicate(format: "self == %@", event.objectID)
+        let request: NSFetchRequest = NSFetchRequest<Event>(entityName: self.eventEntity)
+        let predicateEvent: NSPredicate = NSPredicate(format: "self == %@", event.objectID)
         request.predicate = predicateEvent
         
-        let event = try?(context?.fetch(request))!
+        let events: [Event] = try! (context?.fetch(request))!
         
-        let eventFetched  = event!.first
-        eventFetched!.favoris = !eventFetched!.favoris
+        let eventFetched: Event = events.first!
+        eventFetched.favoris = !eventFetched.favoris
         
-        try? managedObjectContext?.save()
-    }
-    
-    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
-        
-        if isModifier {
-            return true
-        }
-        
-        return false
-    }
-    
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        
-        if isModifier {
-            return true
-        }
-        return false
+        try? self.managedObjectContext?.save()
     }
     
     @IBAction func deleteEvent(_ sender: AnyObject) {
         
-        self.deleteEventData(context: managedObjectContext)
+        self.deleteEventData(self.managedObjectContext)
         
-        self.navigationController?.popViewController(animated: true)
+        if let navCtrl: UINavigationController = self.navigationController {
+            navCtrl.popViewController(animated: true)
+        }
     }
     
     
     @IBAction func addEventToFavorites(_ sender: AnyObject) {
-        self.updateEventData(context:managedObjectContext, event:eventDetail)
+        self.updateEventData(self.managedObjectContext, self.eventDetail)
         
-        let eventFavoris = self.eventDetail.favoris
-        let imageFavoris = eventFavoris ? imageFavorisTrue : imageFavorisFalse
-        self.favorisButton.setImage(imageFavoris, for:.normal)
+        let eventFavoris: Bool = self.eventDetail.favoris
+        let imageFavoris: UIImage = eventFavoris ? self.imageFavorisTrue : self.imageFavorisFalse
+        self.favorisButton.setImage(imageFavoris, for: .normal)
 
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

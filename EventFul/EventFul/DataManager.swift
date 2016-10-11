@@ -11,24 +11,24 @@ import CoreData
 
 class DataManager: NSObject {
     
-    var context : NSManagedObjectContext
+    var context: NSManagedObjectContext        // The context of the object model(s).
+    var resourceName: String = "EventFul"      // The name of the project file.
     
     override init() {
         
-        guard let modelURL = Bundle.main.url(forResource: "EventFul", withExtension: "momd") else {
-            fatalError("Erreur de chargement du modèle de donnée")
+        guard let modelURL = Bundle.main.url(forResource: self.resourceName, withExtension: "momd") else {
+            fatalError("Data model loading error")
         }
         
         guard let modelSchema = NSManagedObjectModel(contentsOf: modelURL) else {
-            fatalError("Erreur d'initialisation du model: \(modelURL)")
+            fatalError("Model initialization error: could not load \(modelURL)")
         }
         
-        let storeCoordinator = NSPersistentStoreCoordinator(managedObjectModel:modelSchema)
+        let storeCoordinator = NSPersistentStoreCoordinator(managedObjectModel: modelSchema)
         
         let documentURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        print("documentURL: \(documentURL)")
         
-        let dbURL = documentURL.appendingPathComponent("EventFulDB.db")
+        let dbURL = documentURL.appendingPathComponent(self.resourceName + "DB.db")
         
         do {
             try storeCoordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: dbURL, options: nil)
@@ -37,19 +37,7 @@ class DataManager: NSObject {
             self.context = objectContext
         }
         catch {
-            fatalError("Erreur d'association du store: \(error)")
+            fatalError("Store association error: \(error)")
         }
-        
-        
     }
-
-    
-    /*func createNewEvent(titre:String, eventDetail:String, context:NSManagedObjectContext){
-        let event = NSEntityDescription.insertNewObject(forEntityName: "Event", into: context) as! Event
-        
-        event.titre = titre
-        event.eventDetail = eventDetail
-        
-    }*/
-
 }

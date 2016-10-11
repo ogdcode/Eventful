@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="OVk-8Q-ifE">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="OVk-8Q-ifE">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -27,7 +27,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="104"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yOG-o0-DOg" id="gc4-ed-DPY">
-                                            <frame key="frameInset" width="375" height="104"/>
+                                            <frame key="frameInset" width="375" height="103"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Titre événement" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZQG-CM-tdy">
@@ -63,6 +63,7 @@
                                             <outlet property="modifierButton" destination="neX-kF-1Bv" id="OOK-eX-dPj"/>
                                             <outlet property="supprimerButton" destination="pZF-JT-enW" id="QoJ-g8-dvY"/>
                                             <outlet property="titreTableViewCell" destination="ZQG-CM-tdy" id="sJ9-jt-d99"/>
+                                            <segue destination="ZPq-cB-upy" kind="show" identifier="detailEventSegue" id="fbl-y6-ACe"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -80,7 +81,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="eventTableView" destination="OIQ-kA-XUZ" id="zmS-DK-eeL"/>
-                        <segue destination="ZPq-cB-upy" kind="show" identifier="detailEventSegue" id="Gzn-vr-qxS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -149,7 +149,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h3A-I0-50E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2796" y="876"/>
+            <point key="canvasLocation" x="2801" y="444"/>
         </scene>
         <!--Mon événement-->
         <scene sceneID="TJv-P2-FEf">
@@ -210,7 +210,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8rj-Wm-naV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1840.8" y="1340.7796101949027"/>
+            <point key="canvasLocation" x="1841" y="1143"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="u0M-jS-hTQ">
@@ -233,7 +233,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kFM-Co-Ndh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="905" y="473"/>
+            <point key="canvasLocation" x="900" y="444"/>
         </scene>
     </scenes>
     <resources>
