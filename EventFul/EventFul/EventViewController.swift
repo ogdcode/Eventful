@@ -15,18 +15,25 @@ class EventViewController: UIViewController,UITextFieldDelegate, UITextViewDeleg
     @IBOutlet weak var detailTextView: UITextView!
     @IBOutlet weak var validerButton: UIButton!
     
-    let managedObjectContext: NSManagedObjectContext = (UIApplication.shared.delegate as! AppDelegate).dataManager!
+    var dataManager: DataManager?
+    var firstSynopsisEdit: Bool?
     
     // MARK: - ViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Data Manager
+        self.dataManager = (UIApplication.shared.delegate as! AppDelegate).dataManager
+        
+        // set this color for a placeholder-like effect
+        self.detailTextView.textColor = UIColor.lightGray
+        
         // Delegates for managing UITextField and UITextView actions
         self.titreLabel.delegate = self
         self.detailTextView.delegate = self
         
-        self.checkEventValidTitle()
+        self.firstSynopsisEdit = true
     }
     
     // MARK: - UITextFieldDelegate
@@ -36,7 +43,18 @@ class EventViewController: UIViewController,UITextFieldDelegate, UITextViewDeleg
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        self.checkEventValidTitle()
+        if self.checkValidEventTitle() {
+            self.navigationItem.title = self.titreLabel.text
+            
+            if  self.checkValidEventSynopsis() &&
+                !self.firstSynopsisEdit! {
+                
+                self.validerButton.isEnabled = true
+                
+            }
+        } else {
+            self.navigationItem.title = "Mon évènement"
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -46,9 +64,33 @@ class EventViewController: UIViewController,UITextFieldDelegate, UITextViewDeleg
     
     // MARK: - UITextViewDelegate
     
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        if self.firstSynopsisEdit! {
+            self.detailTextView.text = ""
+            self.firstSynopsisEdit = false
+        }
+        self.detailTextView.textColor = UIColor.black
+        
+        return true
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        self.validerButton.isEnabled = false
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if  self.checkValidEventSynopsis() &&
+            self.checkValidEventTitle() {
+            
+            self.validerButton.isEnabled = true
+            
+        }
+    }
+    
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if text == "\n" {
             textView.resignFirstResponder()
+            self.detailTextView.textColor = UIColor.lightGray
             return false
         }
         return true
@@ -56,23 +98,28 @@ class EventViewController: UIViewController,UITextFieldDelegate, UITextViewDeleg
     
     // MARK: - Actions
     
-    func checkEventValidTitle() {
-        let titreText: String = self.titreLabel.text ?? ""
-        self.validerButton.isEnabled = !(titreText.isEmpty)
+    func checkValidEventTitle() -> Bool {
+        // disable the validate button if the event title field is empty
+        let text = self.titreLabel.text ?? ""
+        return !text.isEmpty
     }
     
-    func saveEventData() {
-        let event = NSEntityDescription.insertNewObject(forEntityName: "Event", into: managedObjectContext) as! Event
-        event.titre = titreLabel.text
-        event.eventDetail = detailTextView.text
-        
-        try? self.managedObjectContext.save()
+    func checkValidEventSynopsis() -> Bool {
+        // disable the validate button if the event description field is empty
+        let text = self.detailTextView.text ?? ""
+        return !text.isEmpty
     }
+
     
     @IBAction func onTouchUpValider(_ sender: UIButton) {
-        self.saveEventData()
-        if let navCtrl: UINavigationController = self.navigationController {
-            navCtrl.popViewController(animated: true)
+        if (self.dataManager?.createEvent(self.titreLabel.text, self.detailTextView.text))! {
+            print("Created object successfully")
+            
+            if let navCtrl: UINavigationController = self.navigationController {
+                navCtrl.popViewController(animated: true)
+            }
+        } else {
+            print("Create object failed")
         }
     }
 

@@ -16,11 +16,11 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     let imageFavorisTrue: UIImage = UIImage(named: "fav_true_button")!
     let imageFavorisFalse: UIImage = UIImage(named: "fav_false_button")!
     
-    var managedObjectContext: NSManagedObjectContext?
+    var dataManager: DataManager?
     var refreshControl: UIRefreshControl = UIRefreshControl()
     
     let eventEntity: String = "Event"
-    var eventArray: [Event] = [Event]()
+    var eventArray: [Event]? = [Event]()
     var favorisIsTapped: Bool = false
     
     // MARK: - ViewController
@@ -28,22 +28,17 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Data Manager
+        self.dataManager = (UIApplication.shared.delegate as! AppDelegate).dataManager
+        
         // Auto-refresh
         self.refreshControl.attributedTitle = NSAttributedString(string: "Rechargement")
         self.refreshControl.addTarget(self, action: #selector(self.refreshTableView), for: UIControlEvents.valueChanged)
         self.eventTableView.addSubview(refreshControl)
         
-        // Access delegate of singleton UIApplication
-        self.managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).dataManager
-        
-        
         // Delegates for managing UITableView
         self.eventTableView.dataSource = self
         self.eventTableView.delegate = self
-        
-        // Load data from SQLite DB
-        self.loadEventData(self.managedObjectContext)
-
         
         // Change back button of navigation bar in NavigationController
         let backButton: String = "back_button"
@@ -61,8 +56,8 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func refreshTableView() {
         
-        self.eventArray.removeAll()
-        self.loadEventData(self.managedObjectContext)
+        self.eventArray?.removeAll()
+        self.eventArray = self.dataManager?.readAllEvents()
         self.eventTableView.reloadData()
         
         // tell refresh control it can stop showing up now
@@ -76,21 +71,22 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return eventArray.count
+        return (self.eventArray?.count)!
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cellID: String = "EventCell"
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! EventTableViewCell
-        let event: Event = eventArray[indexPath.row]
         
-        let eventFavoris: Bool = event.favoris
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath) as! EventTableViewCell
+        let event: Event = self.eventArray![indexPath.row]
+        
+        let eventFavoris: Bool = event.isFavorited
         let imageFavoris: UIImage = (eventFavoris ? imageFavorisTrue : imageFavorisFalse)
         
         cell.favorisButton.setImage(imageFavoris, for: .normal)
         
-        cell.titreTableViewCell.text = event.titre
+        cell.titreTableViewCell.text = event.title
 
         // tags allow to retrieve the Event object when tapping on an action button
         cell.modifierButton.tag = indexPath.row
@@ -109,59 +105,40 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func eventCellAction(_ sender: UIButton!){
         let detailVCID: String = "detailEvent"
+        
         let detailViewController = storyboard?.instantiateViewController(withIdentifier: detailVCID) as! DetailViewController
         
-        let event: Event = eventArray[sender.tag]
+        let event: Event = eventArray![sender.tag]
+        let predicate: NSPredicate = NSPredicate(format: "title = %@", event.title!)
         
-        if sender.titleLabel?.text == "Modifier" {
-            detailViewController.eventDetail = event
-            detailViewController.isModifier = true
-            navigationController?.pushViewController(detailViewController, animated: true)
-        } else if sender.titleLabel?.text == "Supprimer" {
-            self.deleteEventData(self.managedObjectContext, event)
-            self.refreshTableView()
-            
-        } else if sender.titleLabel?.text == "Favoris" {
-            self.updateEventData(self.managedObjectContext, event)
-            self.refreshTableView()
+        switch (sender.titleLabel?.text)! {
+            case "Modifier":
+                detailViewController.event = event
+                navigationController?.pushViewController(detailViewController, animated: true)
+                
+                break
+            case "Supprimer":
+                if (self.dataManager?.deleteEvent(event, predicate))! {
+                    print("Delete successful")
+                    self.refreshTableView()
+                } else {
+                    print("Delete failed")
+                }
+                
+                break
+            case "Favoris":
+                print(event.title)
+                if (self.dataManager?.setEventFavorite(event, predicate, !event.isFavorited))! {
+                    print("Set isFavorited to \(!event.isFavorited) successfully")
+                    self.refreshTableView()
+                } else {
+                    print("Set isFavorited failed")
+                }
+                
+                break
+            default:
+                break
         }
-    }
-    
-    func loadEventData(_ context: NSManagedObjectContext?) {
-        let request: NSFetchRequest = NSFetchRequest<Event>(entityName: self.eventEntity)
-
-        let events: [Event]? = try? (context?.fetch(request))!
-        for event in events! {
-            self.eventArray.append(event)
-        }
-    }
-    
-    func deleteEventData(_ context: NSManagedObjectContext?, _ eventDetail: Event) {
-        let request: NSFetchRequest = NSFetchRequest<Event>(entityName: self.eventEntity)
-        let predicateEvent: NSPredicate = NSPredicate(format: "self == %@", eventDetail.objectID)
-        request.predicate = predicateEvent
-        
-        let events: [Event] = try! (context?.fetch(request))!
-        
-        for event in events {
-            context?.delete(event)
-        }
-        
-        try? self.managedObjectContext?.save()
-    }
-    
-    func updateEventData(_ context: NSManagedObjectContext?, _ event: Event) {
-    
-        let request: NSFetchRequest = NSFetchRequest<Event>(entityName: self.eventEntity)
-        let predicateEvent: NSPredicate = NSPredicate(format: "self == %@", event.objectID)
-        request.predicate = predicateEvent
-        
-        let events: [Event] = try! (context?.fetch(request))!
-        
-        let eventFetched: Event  = events.first!
-        eventFetched.favoris = !eventFetched.favoris
-        
-        try? self.managedObjectContext?.save()
     }
     
     // MARK: - Navigation
@@ -175,9 +152,9 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 let detailViewController = segue.destination as! DetailViewController
                 
                 let row: Int = self.eventTableView.indexPath(for: cell)!.row
-                let event: Event = eventArray[row]
+                let event: Event = eventArray![row]
                 
-                detailViewController.eventDetail = event
+                detailViewController.event = event
             }
         }
     }

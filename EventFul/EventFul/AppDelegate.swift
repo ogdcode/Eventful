@@ -13,10 +13,10 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?                           // The application window.
-    var dataManager : NSManagedObjectContext?       // The object managing the CoreData file.
+    var dataManager : DataManager?       // The object managing the CoreData file.
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        dataManager = DataManager().context
+        self.dataManager = DataManager()
         return true
     }
 }

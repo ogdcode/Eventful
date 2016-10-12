@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		638A79281DA1037800E680FC /* EventFul.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 638A79261DA1037800E680FC /* EventFul.xcdatamodeld */; };
 		638A792E1DA150EC00E680FC /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638A792D1DA150EC00E680FC /* DataManager.swift */; };
 		638A79321DA29FAC00E680FC /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638A79311DA29FAC00E680FC /* ListViewController.swift */; };
 		638A79361DA5660E00E680FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 638A79351DA5660E00E680FC /* Assets.xcassets */; };
@@ -19,10 +18,10 @@
 		63D4C2EE1DAA7CC400EA71AB /* Event+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D4C2EC1DAA7CC400EA71AB /* Event+CoreDataClass.swift */; };
 		63D4C2EF1DAA7CC400EA71AB /* Event+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D4C2ED1DAA7CC400EA71AB /* Event+CoreDataProperties.swift */; };
 		63D4C2F31DAA7FCD00EA71AB /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D4C2F21DAA7FCD00EA71AB /* EventTableViewCell.swift */; };
+		7CBE34F01DAD2A0200249CF0 /* EventFul.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7CBE34EE1DAD2A0200249CF0 /* EventFul.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		638A79271DA1037800E680FC /* EventFul.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EventFul.xcdatamodel; sourceTree = "<group>"; };
 		638A792D1DA150EC00E680FC /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		638A79311DA29FAC00E680FC /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		638A79351DA5660E00E680FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -36,6 +35,7 @@
 		63D4C2EC1DAA7CC400EA71AB /* Event+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataClass.swift"; sourceTree = "<group>"; };
 		63D4C2ED1DAA7CC400EA71AB /* Event+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		63D4C2F21DAA7FCD00EA71AB /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
+		7CBE34EF1DAD2A0200249CF0 /* EventFul.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EventFul.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,10 +76,10 @@
 				638A79371DA6889500E680FC /* DetailViewController.swift */,
 				63D4C2E61DAA7C6300EA71AB /* EventViewController.swift */,
 				63D4C2F21DAA7FCD00EA71AB /* EventTableViewCell.swift */,
+				7CBE34EE1DAD2A0200249CF0 /* EventFul.xcdatamodeld */,
 				638A79351DA5660E00E680FC /* Assets.xcassets */,
 				639ABF141D9C3CB300BFE7F3 /* Main.storyboard */,
 				639ABF1C1D9C3CB300BFE7F3 /* LaunchScreen.storyboard */,
-				638A79261DA1037800E680FC /* EventFul.xcdatamodeld */,
 				639ABF1F1D9C3CB300BFE7F3 /* Info.plist */,
 			);
 			path = EventFul;
@@ -117,7 +117,6 @@
 				TargetAttributes = {
 					639ABF0C1D9C3CB300BFE7F3 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 3AEXBJTP8R;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -158,9 +157,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CBE34F01DAD2A0200249CF0 /* EventFul.xcdatamodeld in Sources */,
 				63D4C2EF1DAA7CC400EA71AB /* Event+CoreDataProperties.swift in Sources */,
 				638A792E1DA150EC00E680FC /* DataManager.swift in Sources */,
-				638A79281DA1037800E680FC /* EventFul.xcdatamodeld in Sources */,
 				63D4C2EE1DAA7CC400EA71AB /* Event+CoreDataClass.swift in Sources */,
 				638A79381DA6889500E680FC /* DetailViewController.swift in Sources */,
 				63D4C2E71DAA7C6300EA71AB /* EventViewController.swift in Sources */,
@@ -291,7 +290,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 3AEXBJTP8R;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = EventFul/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -308,7 +307,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 3AEXBJTP8R;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = EventFul/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -343,12 +342,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		638A79261DA1037800E680FC /* EventFul.xcdatamodeld */ = {
+		7CBE34EE1DAD2A0200249CF0 /* EventFul.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				638A79271DA1037800E680FC /* EventFul.xcdatamodel */,
+				7CBE34EF1DAD2A0200249CF0 /* EventFul.xcdatamodel */,
 			);
-			currentVersion = 638A79271DA1037800E680FC /* EventFul.xcdatamodel */;
+			currentVersion = 7CBE34EF1DAD2A0200249CF0 /* EventFul.xcdatamodel */;
 			path = EventFul.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
