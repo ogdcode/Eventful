@@ -12,8 +12,8 @@ import CoreData
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-    var window: UIWindow?                           // The application window.
-    var dataManager : DataManager?       // The object managing the CoreData file.
+    var window: UIWindow?           // The application window.
+    var dataManager : DataManager?  // The object managing the CoreData file.
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         self.dataManager = DataManager()

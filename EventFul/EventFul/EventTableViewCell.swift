@@ -10,22 +10,22 @@ import UIKit
 
 class EventTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var titreTableViewCell: UILabel!
+    @IBOutlet weak var eventTitleLabel: UILabel!                // The event title.
+    @IBOutlet weak var eventSynopsisLabel: UILabel!             // The event synopsis.
 
-    @IBOutlet weak var modifierButton: UIButton!
-    @IBOutlet weak var supprimerButton: UIButton!
-    @IBOutlet weak var favorisButton: UIButton!
+    @IBOutlet weak var editEventButton: UIButton!               // A button to validate edits made to the event.
+    @IBOutlet weak var deleteEventButton: UIButton!             // A button to delete an event.
+    @IBOutlet weak var addEventToFavoritesButton: UIButton!     // A button to change the favorite status of the event.
     
     // MARK: - UITableViewCell
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.favorisButton.titleLabel?.text = "Favoris"
-        self.favorisButton.titleLabel?.isHidden = true
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+        // set a label to the Add Event To Favorites button
+        // so that actions can be easily targeted at it in the code
+        // but hide it so it does not show up over its icon
+        self.addEventToFavoritesButton.titleLabel?.text = "Favoris"
+        self.addEventToFavoritesButton.titleLabel?.isHidden = true
     }
 }

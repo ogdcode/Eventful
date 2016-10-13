@@ -11,61 +11,66 @@ import CoreData
 
 class DetailViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
 
-    @IBOutlet weak var detailTextView: UITextView!
-    @IBOutlet weak var titreTextView: UITextField!
-    @IBOutlet weak var favorisButton: UIButton!
-    @IBOutlet weak var sauvegardButton: UIButton!
+    @IBOutlet weak var eventTitleLabel: UITextField!                // The event title.
+    @IBOutlet weak var eventSynopsisView: UITextView!               // The event synopsis (description)
+    @IBOutlet weak var addEventToFavoritesButton: UIButton!         // A button to change the favorite status of the event.
+    @IBOutlet weak var editEventButton: UIButton!                   // A button to validate edits made to the event.
     
-    var dataManager: DataManager?
+    let favIcon: UIImage = UIImage(named: "fav_true_button")!       // The icon used for events marked as favorite by the user.
+    let notFavIcon: UIImage = UIImage(named: "fav_false_button")!   // The icon used for events not marked as favorite by the user.
     
-    let eventEntity: String = "Event"
-    var event: Event!
+    var dataManager: DataManager?                                   // The object managing the CoreData file.
     
-    let imageFavorisTrue: UIImage = UIImage(named: "fav_true_button")!
-    let imageFavorisFalse: UIImage = UIImage(named: "fav_false_button")!
+    var event: Event!                                               // The Event object passed from the event list.
 
     // MARK: - ViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Data Manager
+        // get the DataManager object
         self.dataManager = (UIApplication.shared.delegate as! AppDelegate).dataManager
         
+        // set the navigation item title as the event title
+        // and also set the event synopsis view as the
+        // registered synopsis of the event in the database
         self.navigationItem.title = self.event.title
-        self.titreTextView.text = self.event.title
-        self.detailTextView.text = self.event.synopsis
+        self.eventTitleLabel.text = self.event.title
+        self.eventSynopsisView.text = self.event.synopsis
         
         // set this color for a placeholder-like effect
-        self.detailTextView.textColor = UIColor.lightGray
+        self.eventSynopsisView.textColor = UIColor.lightGray
         
         // Delegates for managing UITextField and UITextView actions
-        self.detailTextView.delegate = self
-        self.titreTextView.delegate = self
-        
-        let eventFavoris: Bool = self.event.isFavorited
-        let imageFavoris: UIImage = eventFavoris ? self.imageFavorisTrue : self.imageFavorisFalse
-        self.favorisButton.setImage(imageFavoris, for: .normal)
+        self.eventTitleLabel.delegate = self
+        self.eventSynopsisView.delegate = self
     }
     
     // MARK: - UITextFieldDelegate
     
+    // when the user starts editing, the Edit Event button
+    // should be disabled to prevent them from editing
+    // forbidden entries, like empty titles for example
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        self.sauvegardButton.isEnabled = false
+        self.editEventButton.isEnabled = false
     }
     
+    // when the user stops editing, the system must check
+    // that the event has a non-empty title, otherwise it 
+    // should not be possible to validate the changes
     func textFieldDidEndEditing(_ textField: UITextField) {
         if self.checkValidEventTitle() {
-            self.navigationItem.title = self.titreTextView.text
+            self.navigationItem.title = self.eventTitleLabel.text
             
             if self.checkValidEventSynopsis() {
-                self.sauvegardButton.isEnabled = true
+                self.editEventButton.isEnabled = true
             }
         } else {
             self.navigationItem.title = "Mon évènement"
         }
     }
     
+    // the user must tap the Done key on their keyboard to exit the field
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -73,28 +78,37 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UITextViewDel
     
     // MARK: - UITextViewDelegate
     
+    // when the user starts editing, the text must be recolored
+    // to indicate that the view is active
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
-        self.detailTextView.textColor = UIColor.black
+        self.eventSynopsisView.textColor = UIColor.black
         return true
     }
     
+    // when the user starts editing, the Edit Event button
+    // should be disabled to prevent them from editing
+    // forbidden entries, like empty synopses for example
     func textViewDidBeginEditing(_ textView: UITextView) {
-        self.sauvegardButton.isEnabled = false
+        self.editEventButton.isEnabled = false
     }
     
+    // when the user stops editing, the system must check
+    // that the event has a non-empty synopsis, otherwise it
+    // should not be possible to validate the changes
     func textViewDidEndEditing(_ textView: UITextView) {
         if  self.checkValidEventSynopsis() &&
             self.checkValidEventTitle() {
             
-            self.sauvegardButton.isEnabled = true
+            self.editEventButton.isEnabled = true
             
         }
     }
     
+    // the user must tap the Done key on their keyboard to exit the view
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if text == "\n" {
             textView.resignFirstResponder()
-            self.detailTextView.textColor = UIColor.lightGray
+            self.eventSynopsisView.textColor = UIColor.lightGray
             return false
         }
         return true
@@ -102,58 +116,71 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UITextViewDel
     
     // MARK: - Actions
     
+    // disable the Edit Event button if the event title field is empty
     func checkValidEventTitle() -> Bool {
-        // disable the save button if the event title field is empty
-        let text = self.titreTextView.text ?? ""
+        let text = self.eventTitleLabel.text ?? ""
         return !text.isEmpty
     }
     
+    // disable the Edit Event button if the event synopsis field is empty
     func checkValidEventSynopsis() -> Bool {
-        // disable the save button if the event description field is empty
-        let text = self.detailTextView.text ?? ""
+        let text = self.eventSynopsisView.text ?? ""
         return !text.isEmpty
+    }
+    
+    // set icon according to the event being marked as favorite or not
+    func setFavorites() {
+        let eventIsFavorited: Bool = self.event.isFavorited
+        let icon: UIImage = eventIsFavorited ? self.favIcon : self.notFavIcon
+        self.addEventToFavoritesButton.setImage(icon, for: .normal)
     }
     
     @IBAction func deleteEvent(_ sender: AnyObject) {
+        // search for the event in the CoreData store
         let predicate: NSPredicate = NSPredicate(format: "title = %@", self.event.title!)
+        
+        // delete the event from the store and go back to the event list
         if (self.dataManager?.deleteEvent(self.event, predicate))! {
-            print("Delete successful")
-            
             if let navCtrl: UINavigationController = self.navigationController {
                 navCtrl.popViewController(animated: true)
             }
         } else {
-            print("Delete failed")
+            fatalError("Delete failed")
         }
     }
     
     @IBAction func addEventToFavorites(_ sender: AnyObject) {
+        // search for the event in the CoreData store
         let predicate: NSPredicate = NSPredicate(format: "title = %@", self.event.title!)
+        
+        // edit the favorite status event and save it in the store
         if (self.dataManager?.setEventFavorite(self.event, predicate, !self.event.isFavorited))! {
-            print("Set isFavorited to \(!self.event.isFavorited) successfully")
-            
-            let eventFavoris: Bool = self.event.isFavorited
-            let imageFavoris: UIImage = (eventFavoris ? self.imageFavorisTrue : self.imageFavorisFalse)
-            self.favorisButton.setImage(imageFavoris, for: .normal)
+            self.setFavorites()
         } else {
-            print("Set isFavorited failed")
+            fatalError("Set isFavorited failed")
         }
     }
     
     @IBAction func editEvent(_ sender: AnyObject) {
+        // search for the event in the CoreData store
         let predicate: NSPredicate = NSPredicate(format: "title = %@", self.event.title!)
+        // get the event to edit from the store
         let toEdit: Event! = self.dataManager?.readOrUpdateEvent(self.event, predicate)
+        
+        // if not nil, then a matching event has been found
+        // edit its title and synopsis according to the label and view
+        // then save the edited event in the CoreData store
+        // and then go back to the event list
         if toEdit != nil {
-            toEdit.title = self.titreTextView.text
-            toEdit.synopsis = self.detailTextView.text
+            toEdit.title = self.eventTitleLabel.text
+            toEdit.synopsis = self.eventSynopsisView.text
             self.dataManager?.save()
-            print("Update successful")
             
             if let navCtrl: UINavigationController = self.navigationController {
                 navCtrl.popViewController(animated: true)
             }
         } else {
-            print("Update failed")
+            fatalError("Update failed")
         }
     }
 }

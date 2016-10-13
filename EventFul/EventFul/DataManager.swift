@@ -66,11 +66,8 @@ class DataManager: NSObject {
         event.title = title
         event.synopsis = synopsis
         
-        if (self.context?.hasChanges)! {
-            self.save()
-        }
+        self.save()
 
-        
         return true
     }
     
@@ -79,6 +76,8 @@ class DataManager: NSObject {
         return try! self.context?.fetch(request)
     }
     
+    // in CoreData, updating an object is as simple
+    // as retreiving it and then locally editing it before saving
     func readOrUpdateEvent(_ event: Event!, _ predicate: NSPredicate) -> Event? {
         let request = NSFetchRequest<Event>(entityName: self.eventEntity)
         request.predicate = predicate
@@ -92,11 +91,7 @@ class DataManager: NSObject {
         let evt: Event = self.readOrUpdateEvent(event, predicate)!
         self.context?.delete(evt)
         
-        if (self.context?.hasChanges)! {
-            self.save()
-            
-            return true
-        }
+        self.save()
 
         return false
     }
@@ -105,16 +100,15 @@ class DataManager: NSObject {
         let evt: Event = self.readOrUpdateEvent(event, predicate)!
         evt.isFavorited = isFav
         
-        if (self.context?.hasChanges)! {
-            self.save()
-            
-            return true
-        }
+        self.save()
         
         return false
     }
     
+    // 'shortcut' function to save only when changes are made
     func save() {
-        try? self.context?.save()
+        if (self.context?.hasChanges)! {
+            self.save()
+        }
     }
 }
