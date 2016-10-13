@@ -175,7 +175,7 @@ class ListViewController:   UIViewController, UITableViewDataSource, UITableView
                 if (self.dataManager?.deleteEvent(event, predicate))! {
                     self.refreshTableView()
                 } else {
-                    fatalError("Delete failed")
+                    print("Delete failed")
                 }
                 
                 break

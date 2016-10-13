@@ -174,10 +174,10 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         if toEdit != nil {
             toEdit.title = self.eventTitleLabel.text
             toEdit.synopsis = self.eventSynopsisView.text
-            self.dataManager?.save()
-            
-            if let navCtrl: UINavigationController = self.navigationController {
-                navCtrl.popViewController(animated: true)
+            if (self.dataManager?.save())! {
+                if let navCtrl: UINavigationController = self.navigationController {
+                    navCtrl.popViewController(animated: true)
+                }
             }
         } else {
             fatalError("Update failed")

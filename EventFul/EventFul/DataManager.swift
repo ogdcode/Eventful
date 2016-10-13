@@ -66,9 +66,7 @@ class DataManager: NSObject {
         event.title = title
         event.synopsis = synopsis
         
-        self.save()
-
-        return true
+        return self.save()
     }
     
     func readAllEvents() -> [Event]? {
@@ -91,24 +89,22 @@ class DataManager: NSObject {
         let evt: Event = self.readOrUpdateEvent(event, predicate)!
         self.context?.delete(evt)
         
-        self.save()
-
-        return false
+        return self.save()
     }
     
     func setEventFavorite(_ event: Event!, _ predicate: NSPredicate, _ isFav: Bool!) -> Bool! {
         let evt: Event = self.readOrUpdateEvent(event, predicate)!
         evt.isFavorited = isFav
         
-        self.save()
-        
-        return false
+        return self.save()
     }
     
     // 'shortcut' function to save only when changes are made
-    func save() {
+    func save() -> Bool! {
         if (self.context?.hasChanges)! {
-            self.save()
+            try? self.context?.save()
+            return true
         }
+        return false
     }
 }

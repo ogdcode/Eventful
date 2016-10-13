@@ -151,10 +151,8 @@
                     </view>
                     <connections>
                         <outlet property="createEventButton" destination="VVp-0r-CaE" id="cgu-gX-cpE"/>
-                        <outlet property="detailTextView" destination="acm-Sz-Tqx" id="hOd-Jj-arn"/>
                         <outlet property="newEventSynopsisView" destination="acm-Sz-Tqx" id="xrZ-0a-UtO"/>
                         <outlet property="newEventTitleLabel" destination="0LN-Qv-20B" id="M4k-fe-50V"/>
-                        <outlet property="validerButton" destination="VVp-0r-CaE" id="YWN-2o-JUq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h3A-I0-50E" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -219,8 +217,6 @@
                         <outlet property="editEventButton" destination="KbO-Zl-I3c" id="8xd-Rf-0me"/>
                         <outlet property="eventSynopsisView" destination="3X2-Pc-EyD" id="e7A-WX-iXr"/>
                         <outlet property="eventTitleLabel" destination="un8-nL-uwK" id="k36-pb-sOm"/>
-                        <outlet property="favorisButton" destination="52J-xy-XkF" id="B6K-eU-tVq"/>
-                        <outlet property="sauvegardButton" destination="KbO-Zl-I3c" id="YQn-GL-Nh4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8rj-Wm-naV" userLabel="First Responder" sceneMemberID="firstResponder"/>
