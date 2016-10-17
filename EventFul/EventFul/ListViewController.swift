@@ -159,7 +159,7 @@ class ListViewController:   UIViewController, UITableViewDataSource, UITableView
         
         // retrieve the event at the selected row
         let event: Event = events![sender.tag]
-        let predicate: NSPredicate = NSPredicate(format: "title = %@", event.title!)
+        let predicate: NSPredicate = NSPredicate(format: "self = %@", event.objectID)
         
         // different actions can be carried out
         // depending on which button of the cell

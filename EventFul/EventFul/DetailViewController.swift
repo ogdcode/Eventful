@@ -137,7 +137,7 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UITextViewDel
     
     @IBAction func deleteEvent(_ sender: AnyObject) {
         // search for the event in the CoreData store
-        let predicate: NSPredicate = NSPredicate(format: "title = %@", self.event.title!)
+        let predicate: NSPredicate = NSPredicate(format: "self = %@", self.event.objectID)
         
         // delete the event from the store and go back to the event list
         if (self.dataManager?.deleteEvent(self.event, predicate))! {
@@ -151,7 +151,7 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UITextViewDel
     
     @IBAction func addEventToFavorites(_ sender: AnyObject) {
         // search for the event in the CoreData store
-        let predicate: NSPredicate = NSPredicate(format: "title = %@", self.event.title!)
+        let predicate: NSPredicate = NSPredicate(format: "self = %@", self.event.objectID)
         
         // edit the favorite status event and save it in the store
         if (self.dataManager?.setEventFavorite(self.event, predicate, !self.event.isFavorited))! {
@@ -163,7 +163,7 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UITextViewDel
     
     @IBAction func editEvent(_ sender: AnyObject) {
         // search for the event in the CoreData store
-        let predicate: NSPredicate = NSPredicate(format: "title = %@", self.event.title!)
+        let predicate: NSPredicate = NSPredicate(format: "self = %@", self.event.objectID)
         // get the event to edit from the store
         let toEdit: Event! = self.dataManager?.readOrUpdateEvent(self.event, predicate)
         
