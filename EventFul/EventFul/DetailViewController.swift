@@ -38,6 +38,10 @@ class DetailViewController: UIViewController, UITextFieldDelegate, UITextViewDel
         self.eventTitleLabel.text = self.event.title
         self.eventSynopsisView.text = self.event.synopsis
         
+        let eventFavoris = self.event.isFavorited
+        let imageFavoris = eventFavoris ? favIcon : notFavIcon
+        self.addEventToFavoritesButton.setImage(imageFavoris, for:.normal)
+        
         // set this color for a placeholder-like effect
         self.eventSynopsisView.textColor = UIColor.lightGray
         
